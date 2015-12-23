@@ -1,11 +1,8 @@
-FROM qnib/d-terminal:squeeze
+FROM qnib/d-java6
 
 ADD etc/apt/sources.list.d/cloudera.list /etc/apt/sources.list.d/
 RUN curl -s archive.key http://archive.cloudera.com/cdh4/debian/squeeze/amd64/cdh/archive.key | apt-key add - && \
     apt-get update
-## Java6
-RUN apt-get install -y --force-yes openjdk-6-jre-headless 
-ENV JAVA_HOME=/usr/
 
 # Carve this out for different host types
 ## JobTracker host
