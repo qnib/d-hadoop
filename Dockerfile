@@ -1,4 +1,4 @@
-FROM qnib/d-java6
+FROM qnib/d-java6:wheezy
 
 ADD etc/apt/sources.list.d/cloudera.list /etc/apt/sources.list.d/
 RUN curl -s archive.key http://archive.cloudera.com/cdh4/debian/squeeze/amd64/cdh/archive.key | apt-key add - && \
