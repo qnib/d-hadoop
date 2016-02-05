@@ -23,7 +23,6 @@ hadoop1:
     ports:
     - 8042
     - 8088
-    - 50070
     privileged: true
 
 hadoop2:
@@ -39,6 +38,5 @@ hadoop2:
     ports:
     - 8042
     - 8088
-    - 50070
     privileged: true
 
