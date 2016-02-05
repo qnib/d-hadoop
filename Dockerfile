@@ -22,3 +22,6 @@ ADD etc/supervisord.d/hdfs-namenode.ini /etc/supervisord.d/
 ## Startscript - datanode
 ADD opt/qnib/hdfs/datanode/bin/start.sh /opt/qnib/hdfs/datanode/bin/
 ADD etc/supervisord.d/hdfs-datanode.ini /etc/supervisord.d/
+## put me in qnib/d-terminal please
+ADD opt/qnib/consul/etc/bash_functions.sh /opt/qnib/consul/etc/
+RUN apt-get install -y procps
