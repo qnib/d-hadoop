@@ -18,6 +18,7 @@ hadoop1:
     environment:
     - DC_NAME=dc1
     - FORWARD_TO_FILE=true
+    - HADOOP_HDFS_NAMENODE=true
     links:
     - consul:consul
     ports:
@@ -39,4 +40,16 @@ hadoop2:
     - 8042
     - 8088
     privileged: true
+
+hue:
+    hostname: hue
+    container_name: hue
+    dns: 127.0.0.1
+    image: qnib/d-hue
+    environment:
+    - DC_NAME=dc1
+    links:
+    - consul:consul
+    ports:
+    - 8000
 

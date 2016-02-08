@@ -9,6 +9,9 @@ if [ "${HADOOP_HDFS_NAMENODE}" != "true" ];then
     exit 0
 fi
 
+## create initial namenode config
+consul-template -consul localhost:8500 -once -template "/etc/consul-templates/hdfs/core-site.xml-INIT.ctmpl:/etc/hadoop/conf/core-site.xml"
+
 if [ ! -d /data/hadoopdata/hdfs/namenode ];then
     mkdir -p /data/hadoopdata/hdfs/namenode
     hdfs namenode -format
