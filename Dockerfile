@@ -12,6 +12,9 @@ RUN apt-get install -y hadoop-hdfs-namenode
 ## ??
 RUN apt-get install -y hadoop-0.20-mapreduce-tasktracker hadoop-hdfs-datanode
 
+RUN apt-get install -y wget && \
+    wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.0.0/dumb-init_1.0.0_amd64 && \
+    chmod +x /usr/local/bin/dumb-init
 
 #### History
 RUN echo "hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-client-jobclient.jar TestDFSIO -write -nrFiles 64 -fileSize 16GB -resFile /tmp/TestDFSIOwrite.txt" >> /root/.bash_history && \
@@ -23,7 +26,8 @@ RUN echo "hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-client-jobclient
 RUN mv /etc/hadoop/conf /etc/hadoop/conf.orig
 ADD etc/hadoop/*.xml /etc/hadoop/conf/
 
-ENV HADOOP_HDFS_NAMENODE_PORT=8020
+ENV HADOOP_HDFS_NAMENODE_PORT=8020 \
+    HADOOP_DFS_REPLICATION=2
 ## Startscript - namenode
 ADD opt/qnib/hdfs/namenode/bin/start.sh /opt/qnib/hdfs/namenode/bin/
 ADD etc/supervisord.d/hdfs-namenode.ini /etc/supervisord.d/
